@@ -1,0 +1,64 @@
+﻿@model CledAcademy.Web.Models.ViewModels.AccountViewModels.SuggestViewModel
+@{
+    ViewData["Title"] = "Dostuna Təklif Et";
+}
+
+<!-- Start main-content -->
+<div class="main-content">
+
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg3.jpg">
+        <div class="container pt-70 pb-20">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title text-white">Saytımızı Dostuna Təklif Et</h2>
+                        <ol class="breadcrumb text-left text-black mt-10">
+                            <li><a href="http://www.cledacademy.com">CledAcademy.Com</a></li>
+                            <li><a asp-controller="Account" asp-action="Index">Mənim Hesabım</a></li>
+                            <li class="active text-gray-silver">Dostuna Təklif Et</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-push-3">
+                    <div class="icon-box mb-0 p-0">
+                        <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                            <i class="fa fa-bank"></i>
+                        </a>
+                        <h4 class="text-gray pt-10 mt-0 mb-30">Saytımızı Dostuna Təklif Et</h4>
+                    </div>
+                    <hr>
+                    <p>
+                        Saytımız faydalıdır ? Elə isə aşağıdakı linki dostuna göndər və o da bu üstünlüklərdən faydalansın.
+                        Siz linki kopyalamaqla birbaşa olaraq və ya dostunuzun emailini uyğun xanaya daxil etməklə göndərə bilərsiniz.
+                        Dostunuz qeydiyyatdan keçəndə siz balansınıza <span class="text-theme-color-2">1 AZN</span> bonus qazanacaqsınız.
+                    </p>
+                    <br />
+                    <p><a class="btn-link" href="#">@ViewBag.SuggestUrl</a></p>
+                    <br />
+                    <form asp-controller="Account" asp-action="Suggest" method="post">
+                        <div class="form-group">
+                            <input type="hidden" name="suggestUrl" value="@ViewBag.SuggestUrl"/>
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" placeholder="someone@@domain.com"/>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group pull-right">
+                            <button type="submit" class="btn btn-dark btn-sm">Göndər</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

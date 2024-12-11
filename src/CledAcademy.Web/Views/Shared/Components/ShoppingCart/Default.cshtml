@@ -1,0 +1,76 @@
+﻿@model IEnumerable<CledAcademy.Web.Models.ViewModels.ShoppingCardViewModel>
+@{
+    var count = Model.Count();
+}
+<div class="top-dropdown-outer pt-5 pb-10">
+    <a class="top-cart-link has-dropdown text-white text-hover-theme-colored"><i class="fa fa-shopping-cart font-13"></i> (<span id="orderCount">@count</span>)</a>
+    <ul class="dropdown">
+        <li>
+            <!-- dropdown cart -->
+            <div class="dropdown-cart">
+                <table class="table cart-table-list table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Növü</th>
+                            <th>Adı</th>
+                            <th>Qiyməti</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Any())
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.OrderType</td>
+                                    <td><a href="#">@item.Name</a></td>
+                                    <td>@item.Price.ToString("0.00") AZN</td>
+                                    <td class="product-remove">
+                                        <input class="orderId" type="hidden" value="@item.Id" />
+                                        <span class="close" style="cursor: pointer"><i class="fa fa-close font-13"></i></span>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="3">
+                                    <p class="text-center">Sizin səbətiniz boşdur</p>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+                <div class="total-cart text-right">
+                    <table class="table table-responsive">
+                        <tbody>
+                            <tr>
+                                <td>Ümumi Məbləğ</td>
+                                <td>
+                                    <span class="amount totalAmount">@Model.Sum(m => m.Price).ToString("0.00")</span> AZN
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="cart-btn text-right">
+                    <form asp-controller="Account" asp-action="Checkout">
+                        @if (count > 0)
+                        {
+                            <a id="viewCard" class="btn btn-theme-colored btn-xs" asp-controller="Account" asp-action="ShoppingCard">Səbətə Bax</a>
+                            <input type="submit" class="btn btn-dark btn-xs checkout" value="Ödəməni Tamamla" />
+                        }
+                        else
+                        {
+                            <a class="btn btn-theme-colored btn-xs disabled" asp-controller="Account" asp-action="ShoppingCard">Səbətə Bax</a>
+                            <input type="submit" class="btn btn-dark btn-xs disabled" value="Ödəməni Tamamla" />
+                        }
+                    </form>
+                </div>
+            </div>
+            <!-- dropdown cart ends -->
+        </li>
+    </ul>
+</div>

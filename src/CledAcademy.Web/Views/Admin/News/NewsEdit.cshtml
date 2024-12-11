@@ -1,0 +1,51 @@
+﻿@model CledAcademy.Core.Domain.News
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Edit News";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Edit News</h2>
+        </div>
+
+        <!-- Vertical Layout -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body">
+                            <form asp-controller="Admin" asp-action="NewsEdit" method="post">
+                                <label asp-for="Title"></label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input asp-for="Title" class="form-control" placeholder="Enter title" />
+                                    </div>
+                                </div>
+                                <label asp-for="ShortContent"></label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <textarea asp-for="ShortContent" class="form-control" placeholder="Enter short content"></textarea>
+                                    </div>
+                                </div>
+                                <label asp-for="Content"></label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <textarea asp-for="Content" class="form-control" placeholder="Enter content"></textarea>
+                                    </div>
+                                </div>
+                                <label asp-for="ImageUrl"></label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input asp-for="ImageUrl" class="form-control" placeholder="Enter image url" />
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary m-t-15 waves-effect">SAVE</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Vertical Layout -->
+    </div>
+</section>

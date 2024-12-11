@@ -1,0 +1,60 @@
+﻿@model CledAcademy.Core.Domain.Teacher
+@{
+    ViewData["Title"] = Model.FullName;
+}
+  <!-- Start main-content -->
+<div class="main-content">
+
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg3.jpg">
+        <div class="container pt-70 pb-20">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title text-white">Müəllim Haqqında</h2>
+                        <ol class="breadcrumb text-left text-black mt-10">
+                            <li><a href="http://www.cledacademy.com">CledAcademy.Com</a></li>
+                            <li><a asp-controller="Home" asp-action="Index">Ana Səhifə</a></li>
+                            <li class="active text-gray-silver">Müəllim Haqqında</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Experts Details -->
+    <section>
+        <div class="container">
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="thumb">
+                            @if (string.IsNullOrEmpty(Model.ImageUrl))
+                            {
+                                <img class="img-fullwidth" alt="" src="http://placehold.it/260x230">
+                            }
+                            else
+                            {
+                                <img class="img-fullwidth" alt="" src="@Model.ImageUrl" />
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h4 class="name font-24 mt-0 mb-0">@Model.FullName</h4>
+                        <h5 class="mt-5 text-theme-color-2">@Model.Profession</h5>
+                        <p>@Html.Raw(Model.About)</p>
+                        <ul class="styled-icons icon-dark icon-theme-colored icon-sm mt-15 mb-0">
+                            <li><a href="@Model.FacebookProfile"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="@Model.TwitterProfile"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="@Model.SkypeProfile"><i class="fa fa-skype"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+<!-- end main-content -->

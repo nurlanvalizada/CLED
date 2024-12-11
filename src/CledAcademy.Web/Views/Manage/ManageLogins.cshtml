@@ -1,0 +1,92 @@
+﻿@model CledAcademy.Web.Models.ViewModels.ManageViewModels.ManageLoginsViewModel
+@{
+    ViewData["Title"] = "Loqinlər";
+}
+
+<!-- Start main-content -->
+<div class="main-content">
+
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg3.jpg">
+        <div class="container pt-70 pb-20">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title text-white">Loqinlərin İdarə Edilməsi</h2>
+                        <ol class="breadcrumb text-left text-black mt-10">
+                            <li><a href="http://www.cledacademy.com">CledAcademy.Com</a></li>
+                            <li><a asp-controller="Manage" asp-action="ManageLogins">İdarəEtmə</a></li>
+                            <li class="active text-gray-silver">Loqinlərin İdarə Edilməsi</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-push-3">
+                    <div class="icon-box mb-0 p-0">
+                        <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                            <i class="fa fa-external-link"></i>
+                        </a>
+                        <h4 class="text-gray pt-10 mt-0 mb-30">Xarici Loqinləri İdarə Et</h4>
+                    </div>
+                    <hr>
+                    <p class="text-success">@ViewData["StatusMessage"]</p>
+
+                    @if (Model.CurrentLogins.Count > 0)
+                    {
+                        <h4>Sizin Loqinləriniz</h4>
+                        <table class="table">
+                            <tbody>
+                            @foreach (var login in Model.CurrentLogins)
+                            {
+                                <tr>
+                                    <td>@login.LoginProvider</td>
+                                    <td>
+                                        @if ((bool) ViewData["ShowRemoveButton"])
+                                        {
+                                            <form asp-controller="Manage" asp-action="RemoveLogin" method="post" class="form-horizontal">
+                                                <div>
+                                                    <input asp-for="@login.LoginProvider" name="LoginProvider" type="hidden"/>
+                                                    <input asp-for="@login.ProviderKey" name="ProviderKey" type="hidden"/>
+                                                    <input type="submit" class="btn btn-default" value="Sil" title="@login.LoginProvider loqini sil"/>
+                                                </div>
+                                            </form>
+                                        }
+                                        else
+                                        {
+ @:&nbsp;
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    }
+                    @if (Model.OtherLogins.Count > 0)
+                    {
+                        <h4>Yeni Loqin Əlavə Et.</h4>
+                        <hr/>
+                        <form asp-controller="Manage" asp-action="LinkLogin" method="post" class="form-horizontal">
+                            <div id="socialLoginList">
+                                <p>
+                                    @foreach (var provider in Model.OtherLogins)
+                                    {
+                                        <button type="submit" class="btn btn-default" name="provider" value="@provider.AuthenticationScheme" title="@provider.DisplayName hesabınıza daxil olun">@provider.AuthenticationScheme</button>
+                                    }
+                                </p>
+                            </div>
+                        </form>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- end main-content -->

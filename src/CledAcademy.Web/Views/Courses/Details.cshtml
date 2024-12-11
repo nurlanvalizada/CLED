@@ -1,0 +1,161 @@
+﻿@using CledAcademy.Core.Domain
+@model IEnumerable<CledAcademy.Web.Models.ViewModels.SectionViewModel>
+@{
+    var course = (Course)ViewBag.Course;
+    ViewData["Title"] = course.Name + " kursu";
+
+}
+<!-- Start main-content -->
+<div class="main-content">
+
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg3.jpg">
+        <div class="container pt-70 pb-20">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title text-white">@course.Name Kursu</h2>
+                        <ol class="breadcrumb text-left text-black mt-10">
+                            <li><a href="http://www.cledacademy.com">CledAcademy.Com</a></li>
+                            <li><a asp-controller="Courses" asp-action="Index">Kurslar</a></li>
+                            <li class="active text-gray-silver">@course.Name Kursu</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><section>
+        <div class="container mt-30 mb-30 pt-30 pb-30">
+            <div class="row">
+                @if (ViewBag.Message != null)
+                {
+                    var message = (Tuple<string, string>)ViewBag.Message;
+                    if (message.Item2 == "success")
+                    {
+                        <div class="alert alert-success col-md-12" role="alert">@message.Item1</div>
+                    }
+                    else if (message.Item2 == "warning")
+                    {
+                        <div class="alert alert-warning col-md-12" role="alert">@message.Item1</div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger col-md-12" role="alert">@message.Item1 <a style="color: blue;" asp-controller="Account" asp-action="Pay">Balansınızı artırın</a></div>
+                    }
+                }
+                <div class="col-md-9">
+                    <div class="blog-posts">
+                        <div class="col-md-12">
+                            <div class="row list-dashed">
+                                <div class="sidebar sidebar-left mt-sm-30 ml-40">
+                                    <div class="widget">
+                                        <h2 class="text-theme-colored">
+                                            <span class="text-theme-color-2">@course.Name</span> Kursu
+                                        </h2>
+                                        <br />
+                                        <div>
+                                            <p>Kursun Tanıtım Videosu</p>
+                                            <video class="afterglow" id="myvideo" width="1280" height="720" data-autoresize="fit">
+                                                <source type="video/mp4" src="@Url.Action("GetFree", "MyApi", new {courseId = course.Id})" />
+                                            </video>
+                                        </div>
+                                        <br />
+                                        <h4 class="widget-title line-bottom">Mövcud <span class="text-theme-color-2">Bölmələr</span></h4>
+                                        <div class="services-list">
+                                            <ul class="list list-border angle-double-right">
+                                                @foreach (var svm in Model)
+                                                {
+                                                    <li>
+                                                        <form style="margin-bottom: 0" asp-controller="Courses" asp-action="BuySection" method="post">
+                                                            <input name="id" type="hidden" value="@svm.Section.Id" />
+                                                            <span style="font-weight: 500; font-size: 15px;">
+                                                                <a class="btn-link" asp-controller="Courses" asp-action="TakeLesson" asp-route-sectionId="@svm.Section.Id">@svm.Section.Name</a>
+                                                            </span>
+                                                            @if (!svm.IsBoughtAnyLesson && svm.Price > 0)
+                                                            {
+                                                                <span style="font-weight: 500; font-size: 15px;" class="pull-right text-theme-color-2">
+                                                                    @svm.Price.ToString("0") AZN &nbsp;
+                                                                    <a class="btn-link" asp-controller="Courses" asp-action="AddSectionToCard" asp-route-id="@svm.Section.Id">Səbətə at</a>
+                                                                    <input type="submit" class="btn-link" value="İndi al" />
+                                                                </span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span style="font-weight: 500; font-size: 15px;" class="pull-right text-theme-color-2">
+                                                                    @svm.LessonCount dərs
+                                                                </span>
+                                                            }
+                                                        </form>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    @*@if (course.Teacher != null)
+                    {
+                        <div class="team-members maxwidth400">
+                            <div class="team-thumb">
+                                @if (string.IsNullOrEmpty(course.Teacher.ImageUrl))
+                                {
+                                    <img class="img-fullwidth" alt="" src="http://placehold.it/260x230">
+                                }
+                                else
+                                {
+                                    <img class="img-fullwidth" alt="" src="@course.Teacher.ImageUrl">
+                                }
+                            </div>
+                            <div class="team-bottom-part border-bottom-theme-color-2-2px bg-lighter border-1px text-center p-10 pt-20 pb-10">
+                                <h4 class="font-raleway font-weight-600 m-0"><a class="text-theme-color-2" asp-controller="Home" asp-action="TeacherDetails" asp-route-id="@course.Teacher.Id">@course.Teacher.FullName</a></h4>
+                                <h5 class="text-theme-color">@course.Teacher.Profession</h5>
+                                <ul class="styled-icons icon-sm icon-dark icon-theme-colored">
+                                    <li><a href="@course.Teacher.FacebookProfile"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="@course.Teacher.TwitterProfile"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="@course.Teacher.SkypeProfile"><i class="fa fa-skype"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    }*@
+                    @course.Description
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- end main-content -->
+<script src="~/js/afterglow.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#myvideo').bind('contextmenu', function () { return false; });
+        $(document).bind('contextmenu', function () { return false; });
+        $(document).keydown(function (event) {
+            if (event.keyCode == 123) {
+                return false;
+            }
+            else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+                return false;  //Prevent from ctrl+shift+i
+            }
+            return true;
+        });
+    });
+</script>
+
+<style>
+    video::-internal-media-controls-download-button {
+        display: none;
+    }
+
+    video::-webkit-media-controls-enclosure {
+        overflow: hidden;
+    }
+
+    video::-webkit-media-controls-panel {
+        width: calc(100% + 30px); /* Adjust as needed */
+    }
+</style>

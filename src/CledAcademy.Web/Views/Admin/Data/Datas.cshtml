@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CledAcademy.Core.Domain.DataDictionary>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Datas";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="pull-left">Datas</h2>
+                </div> 
+                <div class="col-md-4">
+                    <a asp-controller="Admin" asp-action="DataCreate" class="btn btn-primary waves-effect pull-right">Add</a>
+                </div>
+            </div>
+        </div>
+        <!-- Hover Rows -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>KEY</th>
+                                    <th>HEADER</th>
+                                    <th>VALUE</th>
+                                    <th colspan="2">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var data in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@data.Id</th>
+                                    <td>@data.Key</td>
+                                    <td>@data.Header</td>
+                                    <td>@data.Value</td>
+                                    <td><a asp-controller="Admin" asp-action="DataEdit" asp-route-id="@data.Id" class="btn btn-primary waves-effect">Edit</a></td>
+                                    <td>
+                                        <form asp-controller="Admin" asp-action="NewsDelete" method="post">
+                                            <input type="hidden" name="id" value="@data.Id"/>
+                                            <button onclick="return confirm('Are you sure you want to delete this item ?')" type="submit" class="btn btn-danger waves-effect">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Hover Rows -->
+    </div>
+</section>

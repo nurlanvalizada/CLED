@@ -1,0 +1,161 @@
+﻿@model CledAcademy.Web.Models.ViewModels.AccountViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Qeydiyyat";
+}
+
+<!-- Start main-content -->
+<div class="main-content">
+
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg3.jpg">
+        <div class="container pt-70 pb-20">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title text-white">Qeydiyyat</h2>
+                        <ol class="breadcrumb text-left text-black mt-10">
+                            <li><a href="http://www.cledacademy.com">CledAcademy.Com</a></li>
+                            <li><a asp-controller="Account" asp-action="Index">Hesab</a></li>
+                            <li class="active text-gray-silver">Qeydiyyat</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-push-3">
+                    <div class="icon-box mb-0 p-0">
+                        <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                            <i class="pe-7s-users"></i>
+                        </a>
+                        <h4 class="text-gray pt-10 mt-0 mb-30">Hələ hesabınız yoxdur ? Elə indi qeydiyyatdan keçin.</h4>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    </div>
+                    <hr>
+                    
+                    @if (ViewBag.RequestOrigin != "Facebook" && Model == null)
+                    {
+                        <p class="text-gray">Saytımızdakı bütün xidmətlərdən istifadə edə bilmək üçün qeydiyyatdan keçməyiniz tələb olunur. Siz ya birbaşa Facebook ilə qeydiyyatdan keçə və ya aşağıdakı xanaları dolduraraq qeydiyyatdan keçə bilərsiniz.</p>
+                        <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" asp-route-userId="@ViewBag.UserId" method="post" class="form-horizontal">
+                            <div class="clear text-center pt-10">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <button type="submit" id="fbLogin" name="provider" value="Facebook" class="btn btn-dark btn-lg btn-block no-border mt-15 mb-15" data-bg-color="#3b5998" title="Facebook ilə Qeydiyyat"> <i class="fa fa-facebook-square"></i> Facebook ilə Qeydiyyat</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <p class="text-gray">Saytımızdakı bütün xidmətlərdən istifadə edə bilmək üçün qeydiyyatdan keçməyiniz tələb olunur. Aşağıdakı xanaları dolduraraq qeydiyyatdan keçin. </p>
+                    }
+                   
+                    <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" name="reg-form" class="register-form" method="post">
+                        <input type="hidden" name="requestOrigin" value="@ViewBag.RequestOrigin" />
+                        <input type="hidden" name="userId" value="@ViewBag.UserId" />
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label asp-for="Username"></label> <span class="required-star">*</span>
+                                <input asp-for="Username" class="form-control">
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="Email"></label> <span class="required-star">*</span>
+                                <input asp-for="Email" class="form-control" placeholder="someone@@domain.com">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Phone"></label>
+                                <input asp-for="Phone" class="form-control" placeholder="0501234567">
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="FirstName"></label> <span class="required-star">*</span>
+                                <input asp-for="FirstName" class="form-control">
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="LastName"></label> <span class="required-star">*</span>
+                                <input asp-for="LastName" class="form-control">
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <label class="col-md-12" asp-for="Gender">Cins <span class="required-star">*</span></label>
+                                <label class="col-md-6">
+                                    <input type="radio" asp-for="Gender" value="1"> Kişi
+                                </label>
+                                <label class="col-md-6">
+                                    <input type="radio" asp-for="Gender" value="2"> Qadın
+                                </label>
+                                <span asp-validation-for="Gender" class="text-danger col-md-12"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-12">Doğum Tarixi <span class="required-star">*</span></label>
+                            <div>
+                                <label class="form-group col-md-3">
+                                    <select asp-for="Day" asp-items="@ViewBag.Days" class="form-control">
+                                        <option>Gün</option>
+                                    </select>
+                                    <span asp-validation-for="Day" class="text-danger"></span>
+                                </label>
+                                <label class="form-group col-md-5">
+                                    <select asp-for="Month" asp-items="@ViewBag.Months" class="form-control">
+                                        <option>Ay</option>
+                                    </select>
+                                    <span asp-validation-for="Month" class="text-danger"></span>
+                                </label>
+                                <label class="form-group col-md-4">
+                                    <select asp-for="Year" asp-items="@ViewBag.Years" class="form-control">
+                                        <option>İl</option>
+                                    </select>
+                                    <span asp-validation-for="Year" class="text-danger"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="Password"></label> <span class="required-star">*</span>
+                                <input asp-for="Password" class="form-control" placeholder="********">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="ConfirmPassword"></label> <span class="required-star">*</span>
+                                <input asp-for="ConfirmPassword" class="form-control" placeholder="********">
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <input type="checkbox" asp-for="IsAcceptedTermsAndConditions" value="true" /> <a class="btn-link" asp-controller="Home" asp-action="TermsAndConditions" target="_blank">İstifadəçi Razılaşması</a>-nı qəbul edirəm <span class="required-star">*</span>
+                                <br />
+                                <span asp-validation-for="IsAcceptedTermsAndConditions" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-dark btn-lg btn-block mt-15" type="submit">Qeydiyyatdan Keç</button>
+                            <a asp-controller="Account" asp-action="Login" class="btn btn-default btn-lg btn-block mt-15">Hesabın var ? Daxil Ol</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- end main-content -->
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

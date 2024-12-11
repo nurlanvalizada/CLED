@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CledAcademy.Core.Domain.AccountTopUp>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Top Ups";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Account TopUps</h2>
+        </div>
+        <!-- Hover Rows -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>FULL NAME</th>
+                                <th>AMOUNT</th>
+                                <th>PAYMENT KEY</th>
+                                <th>DATETIME</th>
+                                <th>STATUSCODE</th>
+                                <th>RRN</th>
+                                <th>CARD NUMBER</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var topUp in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@topUp.Id</th>
+                                    <td>@topUp.Student.Person.FirstName @topUp.Student.Person.LastName</td>
+                                    <td>@topUp.Amount.ToString("0.00") AZN</td>
+                                    <td>@topUp.PaymentKey</td>
+                                    <td>@topUp.DateTime</td>
+                                    <td>@topUp.StatusCode</td>
+                                    <td>@topUp.Rrn</td>
+                                    <td>@topUp.CardNumber</td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Hover Rows -->
+    </div>
+</section>

@@ -1,0 +1,154 @@
+﻿@using CledAcademy.Core.Domain
+@using CledAcademy.Core.Models
+@model  IEnumerable<CledAcademy.Web.Models.ViewModels.LessonViewModel>
+@{
+    var currentLessonId = (int)ViewBag.ActiveLessonId;
+    var currentSection = (Section)ViewBag.Section;
+    GetFileResult? getFileResult = null;
+    if (ViewBag.GetFileResult != null)
+    {
+        getFileResult = (GetFileResult)ViewBag.GetFileResult;
+    }
+    ViewData["Title"] = currentSection.Name + " bölməsi";
+}
+
+<!-- Start main-content -->
+<div class="main-content">
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg3.jpg">
+        <div class="container pt-70 pb-20">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title text-white">@currentSection.Name Bölməsi</h2>
+                        <ol class="breadcrumb text-left text-black mt-10">
+                            <li><a href="http://www.cledacademy.com">CledAcademy.Com</a></li>
+                            <li><a asp-controller="Courses" asp-action="Index">Kurslar</a></li>
+                            <li class="active text-gray-silver">@currentSection.Name Bölməsi</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Blog -->
+    <section>
+        <div class="container">
+            <div class="row">
+                @if (ViewBag.Message != null)
+                {
+                    var message = (Tuple<string, string>)ViewBag.Message;
+                    if (message.Item2 == "success")
+                    {
+                        <div class="alert alert-success col-md-12" role="alert">@message.Item1</div>
+                    }
+                    else if (message.Item2 == "warning")
+                    {
+                        <div class="alert alert-warning col-md-12" role="alert">@message.Item1</div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger col-md-12" role="alert">@message.Item1 <a style="color: blue;" asp-controller="Account" asp-action="Pay">Balansınızı artırın</a></div>
+                    }
+                }
+                <div class="col-md-8 blog-pull-right">
+                    <div class="single-service">
+                        @if (currentLessonId != 0)
+                        {
+                            if (getFileResult == GetFileResult.Image)
+                            {
+                                @*<img width="750" height="500" src="@Url.Action("Get", "MyApi", new {lessonId = currentLessonId})" alt="Siz bu dərsi hələ almamısınız" />*@
+                                <p>
+                                    Diqqət! Siz bu dərsi almadığınızdan dərsin videosunu izləyə bilməzsiniz. Zəhmət olmasa ilk öncə dərsi alın. Bunun üçün aşağıdakı seçimlərin birindən istifadə edə bilərsiniz ...
+                                    <span class="text-theme-color-2">(Qiymət: 1 AZN)</span>
+                                </p>
+                                <form asp-controller="Courses" asp-action="BuyLesson" method="post">
+                                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" asp-controller="Courses" asp-action="AddLessonToCard" asp-route-id="@currentLessonId">Səbətə Əlavə Et</a>
+                                    <input name="id" type="hidden" value="@currentLessonId" />
+                                    <input type="submit" class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" value="İndİ Al" />
+                                </form>
+
+                            }
+                            else
+                            {
+                                <video class="afterglow" id="myvideo" width="1280" height="720" data-autoresize="fit">
+                                    <source type="video/mp4" src="@Url.Action("Get", "MyApi", new {lessonId = currentLessonId})" />
+                                </video>
+                            }
+                        }
+                        else
+                        {
+                            <h3 class="text-theme-colored">@currentSection.Course.Name / @currentSection.Name</h3>
+                            <h5><em>@currentSection.Course.Name kursunun @currentSection.Name bölməsinə xoş gəlmisiniz. <span class="text-theme-color-2">Bu bölməyə</span> aid dərslər sol tərəfdə sıralanmışdır. </em></h5>
+                            <p>
+                                Əgər dərslərdən hər hansı birinin üzərində bağlı qıfıl nişanı varsa bu o deməkdir ki, siz <span class="text-theme-color-2">bu dərsi</span> hələ almamısınız. Alınan dərslər isə açıq qıfıl nişanı ilə göstərilir. Hər hansı dərsi almaq üçün bu dərsə girin. Və əgər hələ almamısınızsa sizə bu dərsi al və səbətə əlavə et seçimləri gələcək. Bundan başqa siz dərsləri <span class="text-theme-color-2">bütövlükdə bölmə və ya kurs şəkilində</span> də ala bilərsiniz. Bununla siz əlavə hər bir dərsi almağa zaman xərcləməmiş olursunuz və həmçinin bu vaxt bəzi güzəştlər də nəzərdə tutulmuşdur ki, bunlardan faydalana bilərsiniz..
+                            </p>
+                        }
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="sidebar sidebar-left mt-sm-30 ml-40">
+                        <div class="widget">
+                            <h4 class="widget-title line-bottom">Video <span class="text-theme-color-2">Dərslər</span></h4>
+                            <div class="services-list">
+                                <ul class="list list-border angle-double-right">
+                                    @foreach (var lesson in Model)
+                                    {
+                                        if (lesson.IsBought)
+                                        {
+                                            if (lesson.Id == currentLessonId)
+                                            {
+                                                <li class="active"><a asp-controller="Courses" asp-action="TakeLesson" asp-route-id="@lesson.Id" asp-route-sectionId="@Context.Request.Query["sectionId"]">@lesson.Name</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a class="btn-link" asp-controller="Courses" asp-action="TakeLesson" asp-route-id="@lesson.Id" asp-route-sectionId="@Context.Request.Query["sectionId"]">@lesson.Name</a><i class="fa fa-unlock pull-right"></i></li>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <li><a class="btn-link" asp-controller="Courses" asp-action="TakeLesson" asp-route-id="@lesson.Id" asp-route-sectionId="@Context.Request.Query["sectionId"]">@lesson.Name</a><i class="fa fa-lock pull-right"></i></li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- end main-content -->
+<script src="~/js/afterglow.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#myvideo').bind('contextmenu', function () { return false; });
+        $(document).bind('contextmenu', function () { return false; });
+        $(document).keydown(function (event) {
+            if (event.keyCode == 123) {
+                return false;
+            }
+            else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+                return false;  //Prevent from ctrl+shift+i
+            }
+            return true;
+        });
+    });
+</script>
+
+<style>
+    video::-internal-media-controls-download-button {
+        display: none;
+    }
+
+    video::-webkit-media-controls-enclosure {
+        overflow: hidden;
+    }
+
+    video::-webkit-media-controls-panel {
+        width: calc(100% + 30px); /* Adjust as needed */
+    }
+</style>

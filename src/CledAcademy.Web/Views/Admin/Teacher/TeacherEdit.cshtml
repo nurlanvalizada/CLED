@@ -1,0 +1,70 @@
+﻿@model CledAcademy.Core.Domain.Teacher
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Edit Teacher";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Edit Teacher</h2>
+        </div>
+
+        <!-- Vertical Layout -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body">
+                        <form asp-controller="Admin" asp-action="TeacherEdit" method="post">
+                            <input type="hidden" name="id" value="@Model.Id">
+                            <label asp-for="FullName"></label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input asp-for="FullName" class="form-control" placeholder="Enter full name">
+                                </div>
+                            </div>
+                            <label asp-for="ImageUrl"></label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input asp-for="ImageUrl" class="form-control" placeholder="Enter image url">
+                                </div>
+                            </div>
+                            <label asp-for="Profession"></label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input asp-for="Profession" class="form-control" placeholder="Enter profession">
+                                </div>
+                            </div>
+                            <label asp-for="About"></label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <textarea asp-for="About" class="form-control" placeholder="Enter about text"></textarea>
+                                </div>
+                            </div>
+                            <label asp-for="FacebookProfile"></label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input asp-for="FacebookProfile" class="form-control" placeholder="Enter fb profile">
+                                </div>
+                            </div>
+                            <label asp-for="SkypeProfile"></label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input asp-for="SkypeProfile" class="form-control" placeholder="Enter skype profile">
+                                </div>
+                            </div>
+                            <label asp-for="TwitterProfile"></label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input asp-for="TwitterProfile" class="form-control" placeholder="Enter twitter profile">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary m-t-15 waves-effect">SAVE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Vertical Layout -->
+    </div>
+</section>

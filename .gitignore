@@ -1,0 +1,22 @@
+# IDEs and editors
+.vs/
+
+# bin and obj folders
+/src/CledAcademy.Core/bin
+/src/CledAcademy.Core/obj
+
+/src/CledAcademy.DataAccess/bin
+/src/CledAcademy.DataAccess/obj
+
+/src/CledAcademy.Repository/bin
+/src/CledAcademy.Repository/obj
+
+/src/CledAcademy.Web/bin
+/src/CledAcademy.Web/obj
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+.idea
+.DS_Store

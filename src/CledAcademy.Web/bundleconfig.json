@@ -1,0 +1,123 @@
+[
+  {
+    "outputFileName": "wwwroot/js/test.min.js",
+    "inputFiles": [
+      "wwwroot/js/test.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/shoppingCart.min.js",
+    "inputFiles": [
+      "wwwroot/js/shoppingCart.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/animate_and_css-plugin-collections.min.css",
+    "inputFiles": [
+      "wwwroot/css/animate.css",
+      "wwwroot/css/css-plugin-collections.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/style-main.min.css",
+    "inputFiles": [
+      "wwwroot/css/style-main.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/preloader.min.css",
+    "inputFiles": [
+      "wwwroot/css/preloader.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/custom-bootstrap-margin-padding.min.css",
+    "inputFiles": [
+      "wwwroot/css/custom-bootstrap-margin-padding.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/responsive.min.css",
+    "inputFiles": [
+      "wwwroot/css/responsive.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/style.min.css",
+    "inputFiles": [
+      "wwwroot/css/style.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/colors/theme-skin-color-set-1.min.css",
+    "inputFiles": [
+      "wwwroot/css/colors/theme-skin-color-set-1.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/menuzord-skins/menuzord-rounded-boxed.min.css",
+    "inputFiles": [
+      "wwwroot/css/menuzord-skins/menuzord-rounded-boxed.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/contact.min.js",
+    "inputFiles": [
+      "wwwroot/js/contact.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/google-map-init.min.js",
+    "inputFiles": [
+      "wwwroot/js/google-map-init.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  }
+]

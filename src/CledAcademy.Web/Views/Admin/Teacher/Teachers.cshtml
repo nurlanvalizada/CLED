@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CledAcademy.Core.Domain.Teacher>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Teachers";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>TEACHERS</h2>
+        </div>
+        <!-- Hover Rows -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>FULL NAME</th>
+                                    <th>PROFESSION</th>
+                                    <th>ABOUT</th>
+                                    <th>FACEBOOK URL</th>
+                                    <th>SKYPE URL</th>
+                                    <th>TWITTER URL</th>
+                                    <th>ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var teacher in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@teacher.Id</th>
+                                    <td>@teacher.FullName</td>
+                                    <td>@teacher.Profession</td>
+                                    <td>@teacher.About</td>
+                                    <td>@teacher.FacebookProfile</td>
+                                    <td>@teacher.SkypeProfile</td>
+                                    <td>@teacher.TwitterProfile</td>
+                                    <td><a asp-controller="Admin" asp-action="TeacherEdit" asp-route-id="@teacher.Id" class="btn btn-primary waves-effect">Edit</a></td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Hover Rows -->
+    </div>
+</section>

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<CledAcademy.Web.Models.ViewModels.CourseViewModel>
+@{
+    ViewData["Title"] = "Kurslar";
+}
+
+<!-- Start main-content -->
+<div class="main-content">
+
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg3.jpg">
+        <div class="container pt-70 pb-20">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title text-white">Kurslar</h2>
+                        <ol class="breadcrumb text-left text-black mt-10">
+                            <li><a href="http://www.cledacademy.com">CledAcademy.Com</a></li>
+                            <li class="active text-gray-silver"><a style="color: #c0c0c0 !important" asp-controller="Courses" asp-action="Index">Kurslar</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Course list -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    @foreach (var cvm in Model)
+                    {
+                        <div class="row mb-15">
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumb">
+                                    @if (string.IsNullOrEmpty(cvm.Course.ImageUrl))
+                                    {
+                                        <img alt="featured project" src="http://placehold.it/262x210" class="img-fullwidth">
+                                    }
+                                    else
+                                    {
+                                        <img alt="featured project" src="@cvm.Course.ImageUrl" class="img-fullwidth">
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-8">
+                                <h4 class="line-bottom mt-0 mt-sm-20">@cvm.Course.Name</h4>
+                                <ul class="review_text list-inline">
+                                    @if (!cvm.IsBoughtAnyLesson)
+                                    {
+                                        <li><h4 class="mt-0"><span class="text-theme-color-2">Qiymət : </span>@cvm.Price.ToString("0.00") AZN</h4></li>
+                                    }
+                                    <li>
+                                        <div class="star-rating" title="5 ulduzdan 4.5 olaraq qiymətləndirilib"><span style="width: 90%;">4.50</span></div>
+                                    </li>
+                                </ul>
+                                <p>@Html.Raw(cvm.Course.Description)</p>
+                                <form asp-controller="Courses" asp-action="BuyCourse" method="post">
+                                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" asp-controller="Courses" asp-action="Details" asp-route-id="@cvm.Course.Id">Daha Ətraflı</a>
+                                    @if (!cvm.IsBoughtAnyLesson)
+                                    {
+                                        <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" asp-controller="Courses" asp-action="AddCourseToCard" asp-route-id="@cvm.Course.Id">Səbətə Əlavə Et</a>
+                                        <input name="id" type="hidden" value="@cvm.Course.Id" />
+                                        <input type="submit" class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" value="İndİ Al" />
+                                    }
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- end main-content -->

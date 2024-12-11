@@ -1,0 +1,167 @@
+﻿@using CledAcademy.Core.Models
+@using CledAcademy.Core.Models.StaticFiles
+@model IEnumerable<CledAcademy.Core.Domain.News>
+@{
+    ViewData["Title"] = "Xəbərlər";
+}
+<!-- Start main-content -->
+<div class="main-content">
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg3.jpg">
+        <div class="container pt-70 pb-20">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title text-white">Xəbərlər</h2>
+                        <ol class="breadcrumb text-left text-black mt-10">
+                            <li><a href="http://www.cledacademy.com">CledAcademy.Com</a></li>
+                            <li><a asp-controller="Home" asp-action="Index">Ana Səhifə</a></li>
+                            <li class="active text-gray-silver">Xəbərlər</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container mt-30 mb-30 pt-30 pb-30">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="blog-posts">
+                        <div class="col-md-12">
+                            <div class="row list-dashed">
+                                @if (Model.Any())
+                                {
+                                    foreach (var news in Model)
+                                    {
+                                        <article class="post clearfix mb-30 pb-30">
+                                            <div class="entry-header">
+                                                <div class="post-thumb thumb">
+                                                    <img src="@news.ImageUrl" alt="" class="img-responsive img-fullwidth">
+                                                </div>
+                                            </div>
+                                            <div class="entry-content border-1px p-20 pr-10">
+                                                <div class="entry-meta media mt-0 no-bg no-border">
+                                                    <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
+                                                        <ul>
+                                                            <li class="font-16 text-white font-weight-600">@news.PublishDate.Day</li>
+                                                            <li class="font-12 text-white text-uppercase">@StaticResources.Months[news.PublishDate.Month]</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="media-body pl-15">
+                                                        <div class="event-content pull-left flip">
+                                                            <h4 class="entry-title text-white text-uppercase m-0 mt-5">
+                                                                <a asp-controller="Home" asp-action="NewsDetails" asp-route-id="@news.Id">@news.Title</a>
+                                                            </h4>
+                                                            <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-heart-o mr-5 text-theme-colored"></i> 2 Bəyənmə</span>
+                                                            <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> 0 Şərh</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p class="mt-10">@Html.Raw(news.ShortContent)</p>
+                                                <a asp-controller="Home" asp-action="NewsDetails" asp-route-id="@news.Id" class="btn-read-more">Ətraflı oxu</a>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </article>
+                                    }
+                                }
+                                else
+                                {
+                                    <article class="post clearfix mb-30 pb-30">
+                                        <div class="entry-header">
+                                            <div class="post-thumb thumb">
+                                                <h3>
+                                                    Heç bir xəbər tapılmadı ...
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </article>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <nav class="text-center">
+                                <ul class="pagination theme-colored">
+                                    @{
+                                        var pageParams = (NewsPageParameters)ViewBag.NewsPageParams;
+                                    }
+
+                                    @if (pageParams.CurrentPageNumber != 1)
+                                    {
+                                        <li>
+                                            <a aria-label="Previous" asp-controller="Home" asp-action="News" asp-route-pageNumber="@(pageParams.CurrentPageNumber - 1)"> <span aria-hidden="true">«</span> </a>
+                                        </li>
+                                    }
+
+                                    @for (int i = pageParams.PageStartIndex; i <= pageParams.PageEndIndex; i++)
+                                    {
+                                        if (i == pageParams.CurrentPageNumber)
+                                        {
+                                            <li class="active"><a asp-controller="Home" asp-action="News" asp-route-pageNumber="@i">@i</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><a asp-controller="Home" asp-action="News" asp-route-pageNumber="@i">@i</a></li>
+                                        }
+                                    }
+                                    @if (pageParams.CurrentPageNumber != pageParams.TotalPageCount && Model.Any())
+                                    {
+                                        <li>
+                                            <a aria-label="Next" asp-controller="Home" asp-action="News" asp-route-pageNumber="@(pageParams.CurrentPageNumber + 1)"> <span aria-hidden="true">»</span> </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="sidebar sidebar-right mt-sm-30">
+                        <div class="widget">
+                            <div class="searchform">
+                                <h5 class="widget-title line-bottom">Hansı xəbərləri axtarırsınız ?</h5>
+                                <form asp-controller="Home" asp-action="News" method="get">
+                                    <input type="text" name="searchPattern" class="form-control" placeholder="Axtarış sözünü daxil edin" value="@ViewBag.searchPattern">
+                                </form>
+                            </div><!-- end newsletter -->
+                        </div><!-- end widget -->
+                        <div class="widget">
+                            <div class="newsletter">
+                                <h5 class="widget-title line-bottom">Həftəlik xəbərlərə abunə olun və məlumatsız qalmayın.</h5>
+                                <form>
+                                    <input type="text" class="form-control" placeholder="Email ünvanınızı daxil edin">
+                                    <br/>
+                                    <input type="button" value="İndi abunə ol!" class="btn btn-dark btn-block"/>
+                                </form>
+                            </div><!-- end newsletter -->
+                        </div><!-- end widget -->
+                        <div class="widget">
+                            <h5 class="widget-title line-bottom">Bizi Facebook-da izləyin</h5>
+                            <div class="fb-page" data-href="https://www.facebook.com/CledAcademy/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                <blockquote cite="https://www.facebook.com/CledAcademy/" class="fb-xfbml-parse-ignore">
+                                    <a href="https://www.facebook.com/CledAcademy/">CLED Academy</a>
+                                </blockquote>
+                            </div>
+                        </div><!-- end widget -->
+                        <div class="widget">
+                            <h5 class="widget-title line-bottom">Tags</h5>
+                            <div class="tags">
+                                <a href="#">education</a>
+                                <a href="#">learning</a>
+                                <a href="#">students</a>
+                                <a href="#">teaching</a>
+                                <a href="#">master</a>
+                                <a href="#">entrance</a>
+                                <a href="#">magistratura</a>
+                                <a href="#">1-ci mərhələ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- end main-content -->

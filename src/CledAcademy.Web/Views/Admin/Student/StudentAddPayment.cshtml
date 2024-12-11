@@ -1,0 +1,40 @@
+﻿@model CledAcademy.Core.Domain.Student
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Edit Student";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Add Payment</h2>
+        </div>
+
+        <!-- Vertical Layout -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body">
+                        <form asp-controller="Admin" asp-action="StudentAddPayment" method="post">
+                            <label>Student</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <p>@Model.Person.FirstName @Model.Person.LastName</p>
+                                </div>
+                            </div>
+                            <input type="hidden" name="id" value="@Model.Id">
+                            <label>Amount</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input name="amount" type="text" class="form-control" placeholder="0,00">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary m-t-15 waves-effect">Add Payment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Vertical Layout -->
+    </div>
+</section>

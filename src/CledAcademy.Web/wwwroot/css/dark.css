@@ -1,0 +1,28 @@
+/*-----------------------------------------------------------------------------------
+	Dark Scheme - less/dark.less
+-----------------------------------------------------------------------------------*/
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6,
+.dark .h1,
+.dark .h2,
+.dark .h3,
+.dark .h4,
+.dark .h5,
+.dark .h6 {
+  color: #b3b3b3;
+}
+.dark section {
+  background-color: #262626;
+}
+.dark .section-bg-light {
+  background-color: #191919 !important;
+}
+.dark .layer-overlay.overlay-light::before {
+  background-color: rgba(38, 38, 38, 0.8);
+}
+
+/*# sourceMappingURL=dark.css.map */

@@ -1,0 +1,35 @@
+﻿@using System.Threading.Tasks
+@using CledAcademy.Core.Domain
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li>
+        <a href="#">@UserManager.GetUserName(User)</a>
+
+        <ul class="dropdown">
+            <li>
+                <a asp-controller="Account" asp-action="Index">Mənim hesabım</a>
+            </li>
+            <li>
+                <a asp-controller="Manage" asp-action="ManageLogins">Loqinləri İdarə Et</a>
+            </li>
+            <li>
+                <a asp-controller="Account" asp-action="Suggest">Dostuna Təklif Et</a>
+            </li>
+            <li>
+                <a href="#" style="cursor: pointer;" onclick="document.getElementById('logoutForm').submit();">Hesabdan Çıxış</a>
+            </li>
+            @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+            {
+                <li>
+                    <a asp-controller="Admin" asp-action="Index">
+                        <b>Admin Panelə Keçid</b>
+                    </a>
+                </li>
+            }
+            <li><form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm"></form></li>
+        </ul>
+    </li>
+}

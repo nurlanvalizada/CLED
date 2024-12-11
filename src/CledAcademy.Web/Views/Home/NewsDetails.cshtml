@@ -1,0 +1,175 @@
+﻿@model CledAcademy.Core.Domain.News
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+ <!-- Start main-content -->
+<div class="main-content">
+
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg3.jpg">
+        <div class="container pt-70 pb-20">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title text-white">Xəbər Detalları</h2>
+                        <ol class="breadcrumb text-left text-black mt-10">
+                            <li><a href="http://www.cledacademy.com">CledAcademy.Com</a></li>
+                            <li><a asp-controller="Home" asp-action="Index">Ana Səhifə</a></li>
+                            <li class="active text-gray-silver">Ətraflı Xəbər</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Blog -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="blog-posts single-post">
+                        <article class="post clearfix mb-0">
+                            <div class="entry-header">
+                                <div class="post-thumb thumb"> <img src="@Model.ImageUrl" alt="" class="img-responsive img-fullwidth"> </div>
+                            </div>
+                            <div class="entry-title pt-10 pl-15">
+                                <h4><a class="text-uppercase" href="#">@Model.Title </a></h4>
+                            </div>
+                            <div class="entry-meta pl-15">
+                                <ul class="list-inline">
+                                    <li>Tarix: <span class="text-theme-color-2"> @Model.PublishDate.ToString("dd/MM/yyyy")</span></li>
+                                    <li>Müəllif: <span class="text-theme-color-2">@Model.Admin.Person.FirstName @Model.Admin.Person.LastName</span></li>
+                                    @*<li><i class="fa fa-comments-o ml-5 mr-5"></i> 5 comments</li>*@
+                                </ul>
+                            </div>
+                            <div class="entry-content mt-10">
+                              @Html.Raw(Model.Content)
+                            </div>
+                        </article>
+                        @*<div class="tagline p-0 pt-20 mt-5">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="tags">
+                                        <p class="mb-0"><i class="fa fa-tags text-theme-color-2"></i> <span>Tags:</span> Engine, Wheel, Oil, Brake</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="share text-right">
+                                        <p><i class="fa fa-share-alt text-theme-color-2"></i> Share</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                        @*<div class="author-details media-post">
+                            <a href="#" class="post-thumb mb-0 pull-left flip pr-20"><img class="img-thumbnail" alt="" src="http://placehold.it/110x110"></a>
+                            <div class="post-right">
+                                <h5 class="post-title mt-0 mb-0"><a href="#" class="font-18">John Doe</a></h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                <ul class="styled-icons square-sm m-0">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="comments-area">
+                            <h5 class="comments-title">Comments</h5>
+                            <ul class="comment-list">
+                                <li>
+                                    <div class="media comment-author">
+                                        <a class="media-left pull-left flip" href="#"><img class="img-thumbnail" src="http://placehold.it/75x75" alt=""></a>
+                                        <div class="media-body">
+                                            <h5 class="media-heading comment-heading">John Doe says:</h5>
+                                            <div class="comment-date">23/06/2014</div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ea commodo consequat...</p>
+                                            <a class="replay-icon pull-right text-theme-colored" href="#"> <i class="fa fa-reply text-theme-colored"></i> Replay</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media comment-author">
+                                        <a class="media-left pull-left flip" href="#"><img class="img-thumbnail" src="http://placehold.it/75x75" alt=""></a>
+                                        <div class="media-body">
+                                            <h5 class="media-heading comment-heading">John Doe says:</h5>
+                                            <div class="comment-date">23/06/2014</div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ea commodo consequat...</p>
+                                            <a class="replay-icon pull-right text-theme-colored" href="#"> <i class="fa fa-reply text-theme-colored"></i> Replay</a>
+                                            <div class="clearfix"></div>
+                                            <div class="media comment-author nested-comment">
+                                                <a href="#" class="media-left pull-left flip pt-20"><img alt="" src="http://placehold.it/75x75" class="img-thumbnail"></a>
+                                                <div class="media-body p-20 bg-lighter">
+                                                    <h5 class="media-heading comment-heading">John Doe says:</h5>
+                                                    <div class="comment-date">23/06/2014</div>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ea commodo consequat...</p>
+                                                    <a class="replay-icon pull-right text-theme-colored" href="#"> <i class="fa fa-reply text-theme-colored"></i> Replay</a>
+                                                </div>
+                                            </div>
+                                            <div class="media comment-author nested-comment">
+                                                <a href="#" class="media-left pull-left flip pt-20"><img alt="" src="http://placehold.it/75x75" class="img-thumbnail"></a>
+                                                <div class="media-body p-20 bg-lighter">
+                                                    <h5 class="media-heading comment-heading">John Doe says:</h5>
+                                                    <div class="comment-date">23/06/2014</div>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ea commodo consequat...</p>
+                                                    <a class="replay-icon pull-right text-theme-colored" href="#"> <i class="fa fa-reply text-theme-colored"></i> Replay</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media comment-author">
+                                        <a class="media-left pull-left flip" href="#"><img class="img-thumbnail" src="http://placehold.it/75x75" alt=""></a>
+                                        <div class="media-body">
+                                            <h5 class="media-heading comment-heading">John Doe says:</h5>
+                                            <div class="comment-date">23/06/2014</div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ea commodo consequat...</p>
+                                            <a class="replay-icon pull-right text-theme-colored" href="#"> <i class="fa fa-reply text-theme-colored"></i> Replay</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>*@
+                        @*<div class="comment-box">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h5>Leave a Comment</h5>
+                                    <div class="row">
+                                        <form role="form" id="comment-form">
+                                            <div class="col-sm-6 pt-0 pb-0">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" required name="contact_name" id="contact_name" placeholder="Enter Name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" required class="form-control" name="contact_email2" id="contact_email2" placeholder="Enter Email">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Enter Website" required class="form-control" name="subject">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <textarea class="form-control" required name="contact_message2" id="contact_message2" placeholder="Enter Message" rows="7"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-dark btn-flat pull-right m-0" data-loading-text="Please wait...">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                        <div class="comments-area">
+                            <div class="fb-comments" data-href="http://localhost:62212/Home/NewsDetails/@Model.Id" data-width="100%" data-numposts="5"></div>
+                        </div><!-- end blog-wrapper -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- end main-content -->

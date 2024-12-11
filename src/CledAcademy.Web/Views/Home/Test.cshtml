@@ -1,0 +1,138 @@
+﻿@using System.Threading.Tasks
+@using CledAcademy.Core.Models
+@model IEnumerable<CledAcademy.Core.Domain.Test>
+@{
+    ViewData["Title"] = "Testlər";
+    var testNumber = 0;
+}
+
+<!-- Start main-content -->
+<div class="main-content">
+
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg3.jpg">
+        <div class="container pt-70 pb-20">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title text-white">Testlər</h2>
+                        <ol class="breadcrumb text-left text-black mt-10">
+                            <li><a href="http://www.cledacademy.com">CledAcademy.Com</a></li>
+                            <li><a asp-controller="Home" asp-action="Index">Ana Səhifə</a></li>
+                            <li class="active text-gray-silver">Testlər</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container" id="test">
+        <form id="testForm">
+            <div class="row">
+                <div id="course-content" class="col-md-8">
+                    @if (Model.Any())
+                    {
+                        <div class="course-description">
+                            @foreach (var test in Model)
+                            {
+                                var testId = string.Empty;
+                                switch (test.TestType)
+                                {
+                                    case TestType.Closed:
+                                        testId = "optionsRadios" + test.Id;
+                                        break;
+                                    case TestType.OpenValue:
+                                        testId = "openValue" + test.Id;
+                                        break;
+                                    case TestType.OpenSelection:
+                                        break;
+                                    case TestType.OpenMatching:
+                                        break;
+                                }
+
+                                testNumber++;
+                                <h3>Sual @testNumber</h3>
+                                <div class="quiz-wrapper">
+                                    <p>@Html.Raw(test.Content)</p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="@testId" class="panel panel-primary" style="border-color: #edecf0;">
+                                                <div class="panel-body">
+                                                    @switch (test.TestType)
+                                                    {
+                                                        case TestType.Closed:
+                                                            foreach (var answer in test.Answers)
+                                                            {
+                                                                <div class="radio">
+                                                                    <label class="answer">
+                                                                        <input name="@testId" value="@answer.Id" type="radio"> @Html.Raw(answer.Text)
+                                                                    </label>
+                                                                </div>
+                                                            }
+                                                            break;
+                                                        case TestType.OpenValue:
+                                                            <div class="answer">
+                                                                <input type="text" class="form-control" style="width: 80%" name="@testId" />
+                                                            </div>
+                                                            break;
+                                                        case TestType.OpenSelection:
+                                                            break;
+                                                        case TestType.OpenMatching:
+                                                            break;
+                                                    }
+                                                </div><!-- end body -->
+                                            </div><!-- end panel -->
+                                        </div><!-- end col -->
+                                    </div><!-- end row -->
+                                </div>
+                            }
+                            <!-- end quiz wrapper -->
+                            <div class="progress-item style2">
+                                <div class="progress-title">
+                                    <h5 id="currentResult">0 % tamamlanıb</h5>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar appeared" style="width: 0%;">
+                                        <span class="percent"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-footer" id="testScore">
+                                <input type="button" id="checkResult" class="btn btn-primary " role="button" value="Təsdiqlə" />
+                            </div>
+                            <div id="result"></div>
+                        </div><!-- end desc -->
+                    }
+                    else
+                    {
+                       <h3>Bu bölmədə heç bir məlumat yoxdur ...</h3>
+                    }
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </form>
+    </div><!-- end container -->
+    <!-- Modal -->
+    <div class="modal fade" id="modal-testTaken" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Diqqət!</h4>
+                </div>
+                <div class="modal-body">
+                    Siz bu testləri artıq cavablandırmısınız ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/test.js"></script>
+}

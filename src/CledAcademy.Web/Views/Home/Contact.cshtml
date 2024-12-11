@@ -1,0 +1,138 @@
+﻿@model CledAcademy.Web.Models.ViewModels.ContactMessageViewModel
+@{
+    ViewData["Title"] = "Bizimlə Əlaqə";
+}
+
+<!-- Start main-content -->
+<div class="main-content">
+
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg3.jpg">
+        <div class="container pt-70 pb-20">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title text-white">Bizimlə Əlaqə</h2>
+                        <ol class="breadcrumb text-left text-black mt-10">
+                            <li><a href="http://www.cledacademy.com">CledAcademy.Com</a></li>
+                            <li><a asp-controller="Home" asp-action="Index">Ana Səhifə</a></li>
+                            <li class="active text-gray-silver">Bizimlə Əlaqə</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider: Contact -->
+    <section class="divider">
+        <div class="container pt-0">
+            <div class="row mb-60 bg-deep">
+                <div class="col-sm-12 col-md-4">
+                    <div class="contact-info text-center pt-60 pb-60 border-right">
+                        <i class="fa fa-phone font-36 mb-10 text-theme-colored"></i>
+                        <h4>Bizə zəng edin</h4>
+                        @*<h6 class="text-gray">Telefon: +994 51 874 05 18</h6>*@
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="contact-info text-center  pt-60 pb-60 border-right">
+                        <i class="fa fa-map-marker font-36 mb-10 text-theme-colored"></i>
+                        <h4>Ünvan</h4>
+                        <h6 class="text-gray">Ə.Əliyev 37, Nərimanov, Bakı</h6>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="contact-info text-center  pt-60 pb-60">
+                        <i class="fa fa-envelope font-36 mb-10 text-theme-colored"></i>
+                        <h4>Email</h4>
+                        <h6 class="text-gray">info@cledacademy.com</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-10">
+                <div class="col-md-5">
+                    <h4 class="mt-0 mb-30 line-bottom">Bizi xəritədə tapın</h4>
+                    <!-- Google Map HTML Codes -->
+                    <div data-address="Bakı, Nərimanov"
+                         data-popupstring-id="#popupstring1"
+                         class="map-canvas autoload-map"
+                         data-mapstyle="style8"
+                         data-height="420"
+                         data-latlng="40.406118,49.875209"
+                         data-title="CledAcademy"
+                         data-zoom="12"
+                         data-marker="/images/map-marker.png">
+                    </div>
+                    <div class="map-popupstring hidden" id="popupstring1">
+                        <div class="text-center">
+                            <h3>CledAcademy</h3>
+                            <p>Bakı, Nərimanov</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <h4 class="mt-0 mb-30 line-bottom">Bizə yazın</h4>
+                    <!-- Contact Form -->
+                    <form id="contact_form" asp-controller="Home" asp-action="Contact" method="post">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label asp-for="FullName"></label> <span class="required-star">*</span>
+                                    <input asp-for="FullName" class="form-control" placeholder="Ad və soyadı daxil edin">
+                                    <span asp-validation-for="FullName"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label asp-for="Email"></label> <span class="required-star">*</span>
+                                    <input asp-for="Email" class="form-control" placeholder="Email ünvanını daxil edin">
+                                    <span asp-validation-for="Email"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label asp-for="Subject"></label> <span class="required-star">*</span>
+                                    <input asp-for="Subject" class="form-control" placeholder="Mövzunu daxil edin">
+                                    <span asp-validation-for="Subject"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label asp-for="Phone"></label>
+                                    <input asp-for="Phone" class="form-control" placeholder="Telefon nömrəsini daxil edin">
+                                    <span asp-validation-for="Phone"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Message"></label> <span class="required-star">*</span>
+                            <textarea asp-for="Message" class="form-control" rows="5" placeholder="Mesajınızı daxil edin"></textarea>
+                            <span asp-validation-for="Message"></span>
+                        </div>
+                        <div class="form-group">
+                            <input name="form_botcheck" class="form-control" type="hidden" value=""/>
+                            <button type="submit" class="btn btn-flat btn-theme-colored text-uppercase mt-10 mb-sm-30 border-left-theme-color-2-4px" data-loading-text="Gözləyin...">Mesajı Göndər</button>
+                            <button type="reset" class="btn btn-flat btn-theme-colored text-uppercase mt-10 mb-sm-30 border-left-theme-color-2-4px">TƏMİZLƏ</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- end main-content -->
+@section Scripts {
+    <!-- Google Map Javascript Codes -->
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyAl0KqH5xjOjtuqvIGppyyXuaY14CT2LI4"></script>
+    <environment names="Development">
+        <script src="~/js/google-map-init.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/js/google-map-init.min.js"></script>
+    </environment>
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

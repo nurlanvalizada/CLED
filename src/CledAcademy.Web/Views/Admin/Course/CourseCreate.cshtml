@@ -1,0 +1,51 @@
+﻿@model CledAcademy.Core.Domain.Course
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Create Course";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Add Course</h2>
+        </div>
+
+        <!-- Vertical Layout -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body">
+                        <form asp-controller="Admin" asp-action="CourseCreate" method="post">
+                            <label asp-for="Name"></label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input asp-for="Name" class="form-control" placeholder="Enter name" />
+                                </div>
+                            </div>
+                            <label asp-for="Description"></label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <textarea asp-for="Description" class="form-control" placeholder="Enter description"></textarea>
+                                </div>
+                            </div>
+                            <label asp-for="ImageUrl"></label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input asp-for="ImageUrl" class="form-control" placeholder="Enter image url" />
+                                </div>
+                            </div>
+                            <label asp-for="VideoUrl"></label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input asp-for="VideoUrl" class="form-control" placeholder="Enter video url" />
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary m-t-15 waves-effect">SAVE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Vertical Layout -->
+    </div>
+</section>

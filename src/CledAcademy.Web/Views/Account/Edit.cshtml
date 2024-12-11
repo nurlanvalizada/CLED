@@ -1,0 +1,142 @@
+﻿@using CledAcademy.Web.Models.ViewModels.ManageViewModels
+@model CledAcademy.Web.Models.ViewModels.AccountViewModels.AccountEditViewModel
+
+@{
+    ViewData["Title"] = "Hesabın Redaktəsi";
+}
+
+    <!-- Start main-content -->
+<div class="main-content">
+
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg3.jpg">
+        <div class="container pt-70 pb-20">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title text-white">Hesabın Redaktəsi</h2>
+                        <ol class="breadcrumb text-left text-black mt-10">
+                            <li><a href="http://www.cledacademy.com">CledAcademy.Com</a></li>
+                            <li><a asp-controller="Account" asp-action="Index">Mənim Hesabım</a></li>
+                            <li class="active text-gray-silver">Hesabın Redaktəsi</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Doctor Details -->
+    <section class="">
+        <div class="container">
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-sx-12 col-sm-4 col-md-4">
+                        <div class="doctor-thumb">
+                            <img src="~/images/profile.png" alt="Profile">
+                        </div>
+                        <div class="info p-20 bg-black-333">
+                            @*<a class="btn btn-info btn-flat mt-10 mb-sm-30" href="#">Şəkil Seç</a>
+                            <a class="btn btn-danger btn-flat mt-10 mb-sm-30" href="#">Şəkili Sil</a>*@
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-md-8">
+                        <form name="editprofile-form" asp-controller="Account" asp-action="Edit" method="post">
+                            <div class="icon-box mb-0 p-0">
+                                <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                                    <i class="fa fa-user"></i>
+                                </a>
+                                <h4 class="text-gray pt-10 mt-0 mb-30">Cari Hesab Məlumatlarının Redaktəsi</h4>
+                            </div>
+                            <hr>
+                            <p class="text-gray">Dəyişiklikləri yadda saxlamaq üçün cari şifrənizi daxil etmək tələb olunur.</p>
+                            
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label asp-for="FirstName"></label> <span class="required-star">*</span>
+                                    <input asp-for="FirstName" class="form-control">
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label asp-for="LastName"></label> <span class="required-star">*</span>
+                                    <input asp-for="LastName" class="form-control">
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label asp-for="Email"></label> <span class="required-star">*</span>
+                                    <input asp-for="Email" class="form-control">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label asp-for="Phone"></label>
+                                    <input asp-for="Phone" class="form-control" placeholder="0501234567">
+                                    <span asp-validation-for="Phone" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div>
+                                    <label class="col-md-12" asp-for="Gender">Cins <span class="required-star">*</span></label>
+                                    <label class="col-md-6">
+                                        <input type="radio" asp-for="Gender" value="1"> Kişi
+                                    </label>
+                                    <label class="col-md-6">
+                                        <input type="radio" asp-for="Gender" value="2"> Qadın
+                                    </label>
+                                    <span asp-validation-for="Gender" class="text-danger col-md-12"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-12">Doğum Tarixi <span class="required-star">*</span></label>
+                                <div>
+                                    <label class="form-group col-md-3">
+                                        <select asp-for="Day" asp-items="@ViewBag.Days" class="form-control">
+                                            <option>Gün</option>
+                                        </select>
+                                        <span asp-validation-for="Day" class="text-danger"></span>
+                                    </label>
+                                    <label class="form-group col-md-5">
+                                        <select asp-for="Month" asp-items="@ViewBag.Months" class="form-control">
+                                            <option>Ay</option>
+                                        </select>
+                                        <span asp-validation-for="Month" class="text-danger"></span>
+                                    </label>
+                                    <label class="form-group col-md-4">
+                                        <select asp-for="Year" asp-items="@ViewBag.Years" class="form-control">
+                                            <option>İl</option>
+                                        </select>
+                                        <span asp-validation-for="Year" class="text-danger"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label asp-for="Username"></label> <span class="required-star">*</span>
+                                    <input asp-for="Username" class="form-control">
+                                    <span asp-validation-for="Username" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label asp-for="Password"></label> <span class="required-star">*</span>
+                                    <input asp-for="Password" class="form-control" placeholder="********">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-dark btn-lg mt-15" type="submit">Yadda Saxla</button>
+                            </div>
+                        </form>
+                        <hr class="mt-70 mb-70">
+                      @await Html.PartialAsync("_ChangePassword", new ChangePasswordViewModel())
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- end main-content -->
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

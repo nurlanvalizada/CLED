@@ -1,0 +1,46 @@
+﻿@model CledAcademy.Core.Domain.Lesson
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Create Lesson";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Add Lesson</h2>
+        </div>
+
+        <!-- Vertical Layout -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body">
+                        <form asp-controller="Admin" asp-action="LessonCreate" method="post">
+                            <input type="hidden" asp-for="SectionId" value="@Context.Request.Query["sectionId"]"/>
+                            <label asp-for="Name"></label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input asp-for="Name" class="form-control" placeholder="Enter name"/>
+                                </div>
+                            </div>
+                            <label asp-for="VideoUrl"></label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input asp-for="VideoUrl" class="form-control" placeholder="Enter description"/>
+                                </div>
+                            </div>
+                            <label asp-for="Price"></label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input asp-for="Price" class="form-control" placeholder="Enter price"/>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary m-t-15 waves-effect">SAVE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Vertical Layout -->
+    </div>
+</section>

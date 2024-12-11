@@ -1,0 +1,39 @@
+﻿@model CledAcademy.Core.Domain.Faq
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Create Faq";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Add FAQ</h2>
+        </div>
+
+        <!-- Vertical Layout -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body">
+                        <form asp-controller="Admin" asp-action="FaqCreate" method="post">
+                            <label asp-for="Question"></label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <textarea asp-for="Question" class="form-control" placeholder="Enter question"></textarea>
+                                </div>
+                            </div>
+                            <label asp-for="Answer"></label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <textarea asp-for="Answer" class="form-control" placeholder="Enter answer"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary m-t-15 waves-effect">SAVE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Vertical Layout -->
+    </div>
+</section>

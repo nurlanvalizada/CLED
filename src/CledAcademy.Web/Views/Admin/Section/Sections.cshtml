@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CledAcademy.Core.Domain.Section>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Sections";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="pull-left">Sections</h2>
+                </div> 
+                <div class="col-md-4">
+                    <a asp-controller="Admin" asp-action="SectionCreate" asp-route-courseId="@Context.Request.Query["courseId"]" class="btn btn-primary waves-effect pull-right">Add</a>
+                </div>
+            </div>
+        </div>
+        <!-- Hover Rows -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>NAME</th>
+                                    <th>DESCRIPTION</th>
+                                    <th colspan="2">Actions</th>
+                                    <th>Related Lessons</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var sectionn in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@sectionn.Id</th>
+                                    <td>@sectionn.Name</td>
+                                    <td>@sectionn.Description</td>
+                                    <td><a asp-controller="Admin" asp-action="SectionEdit" asp-route-id="@sectionn.Id" class="btn btn-primary waves-effect">Edit</a></td>
+                                    <td>
+                                        <form asp-controller="Admin" asp-action="SectionDelete" method="post">
+                                            <input type="hidden" name="id" value="@sectionn.Id"/>
+                                            <button onclick="return confirm('Are you sure you want to delete this item ?')" type="submit" class="btn btn-danger waves-effect">Delete</button>
+                                        </form>
+                                    </td>
+                                    <td><a asp-controller="Admin" asp-action="Lessons" asp-route-sectionId="@sectionn.Id" class="btn btn-block waves-effect">View Lessons</a></td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Hover Rows -->
+    </div>
+</section>

@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{83BE021B-3A54-47B5-BC66-3176187E6BC7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0BA83288-F201-4DBD-9D68-D67651783D93}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CledAcademy.Web", "src\CledAcademy.Web\CledAcademy.Web.csproj", "{B1D9D227-2CD3-43D0-B030-A1F95AB6E8FC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CledAcademy.Core", "src\CledAcademy.Core\CledAcademy.Core.csproj", "{F8AE8B9D-4B86-49A3-B39F-23CC51620039}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CledAcademy.DataAccess", "src\CledAcademy.DataAccess\CledAcademy.DataAccess.csproj", "{615D966E-A66F-4615-850B-9D316899351C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CledAcademy.Repository", "src\CledAcademy.Repository\CledAcademy.Repository.csproj", "{3BBA5AC9-267F-4D2A-8741-1CC50EA99AF3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1D9D227-2CD3-43D0-B030-A1F95AB6E8FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1D9D227-2CD3-43D0-B030-A1F95AB6E8FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1D9D227-2CD3-43D0-B030-A1F95AB6E8FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1D9D227-2CD3-43D0-B030-A1F95AB6E8FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8AE8B9D-4B86-49A3-B39F-23CC51620039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8AE8B9D-4B86-49A3-B39F-23CC51620039}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8AE8B9D-4B86-49A3-B39F-23CC51620039}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8AE8B9D-4B86-49A3-B39F-23CC51620039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{615D966E-A66F-4615-850B-9D316899351C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{615D966E-A66F-4615-850B-9D316899351C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{615D966E-A66F-4615-850B-9D316899351C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{615D966E-A66F-4615-850B-9D316899351C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BBA5AC9-267F-4D2A-8741-1CC50EA99AF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BBA5AC9-267F-4D2A-8741-1CC50EA99AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BBA5AC9-267F-4D2A-8741-1CC50EA99AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BBA5AC9-267F-4D2A-8741-1CC50EA99AF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B1D9D227-2CD3-43D0-B030-A1F95AB6E8FC} = {83BE021B-3A54-47B5-BC66-3176187E6BC7}
+		{F8AE8B9D-4B86-49A3-B39F-23CC51620039} = {83BE021B-3A54-47B5-BC66-3176187E6BC7}
+		{615D966E-A66F-4615-850B-9D316899351C} = {83BE021B-3A54-47B5-BC66-3176187E6BC7}
+		{3BBA5AC9-267F-4D2A-8741-1CC50EA99AF3} = {83BE021B-3A54-47B5-BC66-3176187E6BC7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal

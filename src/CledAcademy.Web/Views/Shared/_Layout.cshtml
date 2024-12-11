@@ -1,0 +1,424 @@
+﻿@using System.Threading.Tasks
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+
+    <!-- Meta Tags -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="CledAcademy | Education Website" />
+    <meta name="keywords" content="academy, course, education, education html theme, elearning, learning, magistratura, online-təhsil" />
+    <meta name="author" content="Nurlan Valizada" />
+
+    <!-- Page Title -->
+    <title>@ViewData["Title"] - CledAcademy.Com </title>
+
+    <!-- Favicon and Touch Icons -->
+    <link href="~/images/favicon.png" rel="shortcut icon" type="image/png">
+    <link href="~/images/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="~/images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
+    <link href="~/images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
+    <link href="~/images/apple-touch-icon-144x144.png" rel="apple-touch-icon" sizes="144x144">
+
+    <!-- Stylesheet -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+
+    <environment names="Development">
+        <link href="~/css/animate.css" rel="stylesheet" type="text/css">
+        <link href="~/css/css-plugin-collections.css" rel="stylesheet" />
+        <!-- CSS | Main style file -->
+        <link href="~/css/style-main.css" rel="stylesheet" type="text/css">
+        <!-- CSS | Preloader Styles -->
+        <link href="~/css/preloader.css" rel="stylesheet" type="text/css">
+        <!-- CSS | Custom Margin Padding Collection -->
+        <link href="~/css/custom-bootstrap-margin-padding.css" rel="stylesheet" type="text/css">
+        <!-- CSS | Responsive media queries -->
+        <link href="~/css/responsive.css" rel="stylesheet" type="text/css">
+        <!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
+        <link href="~/css/style.css" rel="stylesheet" type="text/css">
+        <!-- CSS | menuzord megamenu skins -->
+        <link id="menuzord-menu-skin" href="~/css/menuzord-skins/menuzord-rounded-boxed.css" rel="stylesheet" />
+        <!-- CSS | Theme Color -->
+        <link href="~/css/colors/theme-skin-color-set-1.css" rel="stylesheet" type="text/css">
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/css/animate_and_css-plugin-collections.min.css" rel="stylesheet" type="text/css">
+        <!-- CSS | Main style file min-->
+        <link href="~/css/style-main.min.css" rel="stylesheet" type="text/css">
+        <!-- CSS | Preloader Styles -->
+        <link href="~/css/preloader.min.css" rel="stylesheet" type="text/css">
+        <!-- CSS | Custom Margin Padding Collection -->
+        <link href="~/css/custom-bootstrap-margin-padding.min.css" rel="stylesheet" type="text/css">
+        <!-- CSS | Responsive media queries -->
+        <link href="~/css/responsive.min.css" rel="stylesheet" type="text/css">
+        <!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
+        <link href="~/css/style.min.css" rel="stylesheet" type="text/css">
+        <!-- CSS | menuzord megamenu skins -->
+        <link id="menuzord-menu-skins" href="~/css/menuzord-skins/menuzord-rounded-boxed.min.css" rel="stylesheet" />
+        <!-- CSS | Theme Color -->
+        <link href="~/css/colors/theme-skin-color-set-1.min.css" rel="stylesheet" type="text/css">
+    </environment>
+
+    <!-- external javascripts -->
+    <script src="~/js/jquery-2.2.4.min.js"></script>
+    <script src="~/js/jquery-ui.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <!-- JS | jquery plugin collection for this theme -->
+    <script src="~/js/jquery-plugin-collection.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="">
+    <script src="~/js/custom.js"></script>
+    <div id="wrapper" class="clearfix">
+        <!-- preloader -->
+        <div id="preloader">
+            <div id="spinner">
+                <div class="preloader-dot-loading">
+                    <div class="cssload-loading">
+                        <i></i><i></i><i></i><i></i>
+                    </div>
+                </div>
+            </div>
+            <div id="disable-preloader" class="btn btn-default btn-sm">Yüklənir ...</div>
+        </div>
+
+        <!-- Header -->
+        <header id="header" class="header">
+            <div class="header-top bg-theme-color-2 sm-text-center p-0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="widget no-border m-0">
+                                <ul class="list-inline font-13 sm-text-center mt-5">
+                                    <li>
+                                        <a class="text-white" asp-controller="Home" asp-action="Faq">Ən Çox Soruşulan Suallar</a>
+                                    </li>
+                                    @if (!User.Identity.IsAuthenticated)
+                                    {
+                                        <li class="text-white">|</li>
+                                        <li>
+                                            <b><a class="text-white" asp-controller="Account" asp-action="Register">Qeydiyyat</a></b>
+                                        </li>
+                                        <li class="text-white">|</li>
+                                        <li>
+                                            <b><a class="text-white" asp-controller="Account" asp-action="Login">Daxil Ol</a></b>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="widget m-0 pull-right sm-pull-none sm-text-center">
+                                <ul class="list-inline pull-right">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li class="mb-0 pb-0">
+                                            @await Component.InvokeAsync("ShoppingCart")
+                                        </li>
+                                    }
+                                    <li class="mb-0 pb-0">
+                                        <div class="top-dropdown-outer pt-5 pb-10">
+                                            <a class="top-search-box has-dropdown text-white text-hover-theme-colored"><i class="fa fa-search font-13"></i> &nbsp;</a>
+                                            <ul class="dropdown">
+                                                <li>
+                                                    <div class="search-form-wrapper">
+                                                        <form method="get" class="mt-10">
+                                                            <input type="text" onfocus="if (this.value === 'Axtarış mətni') { this.value = ''; }" onblur="if (this.value === '') { this.value = 'Axtarış mətni'; }" value="Axtarış mətni" id="searchinput" name="search" class="">
+                                                            <label>
+                                                                <input type="submit" value="">
+                                                            </label>
+                                                        </form>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="widget no-border m-0 mr-15 pull-right flip sm-pull-none sm-text-center">
+                                <ul class="styled-icons icon-circled icon-sm pull-right flip sm-pull-none sm-text-center mt-sm-15">
+                                    @await Component.InvokeAsync("Social")
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-middle p-0 bg-lightest xs-text-center">
+                <div class="container pt-0 pb-0">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-md-5">
+                            <div class="widget no-border m-0">
+                                <a class="menuzord-brand pull-left flip xs-pull-center mb-15" asp-controller="Home" asp-action="Index">
+                                    <img src="~/images/logo.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-3">
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="widget no-border pull-right sm-pull-none sm-text-center mt-10 mb-10 m-0">
+                                <ul class="list-inline">
+                                    <li>
+                                        @*<i class="fa fa-phone-square text-theme-colored font-36 mt-5 sm-display-block"></i>*@
+                                        <i class="fa fa-calendar text-theme-colored font-36 mt-5 sm-display-block"></i>
+                                    </li>
+                                    @*<li>
+                                            <a href="#" class="font-12 text-gray text-uppercase">BİZƏ ZƏNG EDİN!</a>
+                                            <h5 class="font-14 m-0"> +994 51 874 05 18</h5>
+                                        </li>*@
+                                    <li>
+                                        <a href="#" class="font-12 text-gray">BİZİMLƏ ÖYRƏNMƏYƏ BAŞLAYIN, </a>
+                                        <h5 class="font-14 m-0">və vaxtınıza qənaət edin!</h5>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-nav">
+                <div class="header-nav-wrapper navbar-scrolltofixed bg-theme-colored border-bottom-theme-color-2-1px">
+                    <div class="container">
+                        <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
+                            <ul class="menuzord-menu">
+                                <li>
+                                    <a id="home" class="menuitems" asp-controller="Home" asp-action="Index">Ana Səhifə</a>
+                                </li>
+                                @{
+                                    var menu = Context.Request.Path.Value.Substring(1).Contains('/')
+                                        ? Context.Request.Path.Value.Remove(Context.Request.Path.Value.Substring(1).IndexOf('/') + 1).Remove(0, 1)
+                                        : Context.Request.Path.Value.Remove(0, 1);
+                                }
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    @if (menu == "Courses")
+                                    {
+                                        <li class="active">
+                                            <a asp-controller="Courses" asp-action="Index">Kurslar</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a asp-controller="Courses" asp-action="Index">Kurslar</a>
+                                        </li>
+                                    }
+                                }
+                                else
+                                {
+                                    if (menu == "Courses")
+                                    {
+                                        <li class="active">
+                                            <a asp-controller="Courses" asp-action="FreeVideos">Pulsuz Dərslər</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a asp-controller="Courses" asp-action="FreeVideos">Pulsuz Dərslər</a>
+                                        </li>
+                                    }
+                                }
+
+                                @*<li>
+                                        <a asp-controller="Home" asp-action="Test">Testlər</a>
+                                    </li>*@
+                                <li>
+                                    <a id="news" class="menuitems" asp-controller="Home" asp-action="News">Xəbərlər</a>
+                                </li>
+                                <li>
+                                    <a id="about" class="menuitems" asp-controller="Home" asp-action="About">Haqqımızda</a>
+                                </li>
+                                <li>
+                                    <a id="contact" class="menuitems" asp-controller="Home" asp-action="Contact">Bizimlə Əlaqə</a>
+                                </li>
+                            </ul>
+                            <ul class="menuzord-menu pull-right">
+                                @await Html.PartialAsync("_LoginPartial")
+                            </ul>
+                            <div id="top-search-bar" class="collapse">
+                                <div class="container">
+                                    <form role="search" action="#" class="search_form_top" method="get">
+                                        <input type="text" placeholder="Type text and press Enter..." name="s" class="form-control" autocomplete="off">
+                                        <span class="search-close"><i class="fa fa-search"></i></span>
+                                    </form>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        @RenderBody()
+
+        <!-- Footer -->
+        <footer id="footer" class="footer" data-bg-color="#1f1f1f">
+            <div class="container pt-70 pb-40">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget dark">
+                            <h4 class="widget-title line-bottom-theme-colored-2">İş Vaxtlarımız</h4>
+                            <div class="opening-hours">
+                                <ul class="list-border">
+                                    <li class="clearfix">
+                                        <span> Bazar ertəsi - Cümə :  </span>
+                                        <div class="value pull-right"> 9.00 am - 22.00 pm </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span> Şənbə :</span>
+                                        <div class="value pull-right"> 10.00 am - 22.00 pm </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span> Bazar : </span>
+                                        <div class="value pull-right"> 11.00 pm - 20.00 pm </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget dark">
+                            <h4 class="widget-title">Faydalı Keçidlər</h4>
+                            <ul class="list angle-double-right list-border">
+                                <li>
+                                    <a asp-controller="Home" asp-action="About">Haqqımızda</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Courses" asp-action="Index">Kurslarımız</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Home" asp-action="Test">Testlər</a>
+                                </li>
+                                @*<li>
+                                        <a asp-controller="Home" asp-action="Teachers">Müəllimlər</a>
+                                    </li>*@
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget dark">
+                            <h5 class="widget-title">Teqlər</h5>
+                            <div class="tags">
+                                <a href="#">academy</a>
+                                <a href="#">education</a>
+                                <a href="#">courses</a>
+                                <a href="#">elearning</a>
+                                <a href="#">learning</a>
+                                <a href="#">success</a>
+                                <a href="#">university</a>
+                                <a href="#">support</a>
+                                <a href="#">features</a>
+                                <a href="#">teaching</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget dark">
+                            <h4 class="widget-title line-bottom-theme-colored-2">Birbaşa Əlaqə</h4>
+                            <form id="quick_contact_form2" asp-controller="Home" asp-action="Contact" name="footer_quick_contact_form" class="quick-contact-form" method="post">
+                                <input type="hidden" name="Subject" value="QuickContact" />
+                                <input type="hidden" name="FullName" value="Undefined" />
+                                <div class="form-group">
+                                    <input name="Email" id="Email" class="form-control" required="" placeholder="Email ünvanı">
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="Message" id="Message" class="form-control" required="" placeholder="Sizin mesajınız (10-500 simvol)" rows="3" data-val="true" data-val-length="Mesaj ən azı 10 və ən çoxu 500 simvoldan ibarət olmalıdır." data-val-length-max="500" data-val-length-min="10" data-val-required="Masajı daxil etmək tələb olunur"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input name="form_botcheck" class="form-control" type="hidden" value="" />
+                                    <button type="submit" class="btn btn-default btn-flat btn-xs btn-quick-contact text-gray pt-5 pb-5" data-loading-text="Göndərilir...">Göndər</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom" data-bg-color="#2f2f2f">
+                <div class="container pt-15 pb-10">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="font-11 text-black-777 m-0">&copy;@DateTime.Now.Year CLEDAcademy. Bütün hüquqlar qorunur</p>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <div class="widget no-border m-0">
+                                <ul class="list-inline sm-text-center mt-5 font-12">
+                                    <li>
+                                        <a asp-controller="Home" asp-action="Faq">Ən Çox Soruşulan Suallar</a>
+                                    </li>
+                                    <li>|</li>
+                                    <li>
+                                        <a asp-controller="Home" asp-action="TermsAndConditions">İstifadəçi Razılaşması</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <a class="scrollToTop" href="#">
+            <i class="fa fa-angle-up"></i>
+        </a>
+    </div>
+    <!-- end wrapper -->
+    <!-- Footer Scripts -->
+    <!-- JS | Custom script for all pages -->
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            var js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1368934939824131";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function () {
+                try {
+                    w.yaCounter43134019 = new Ya.Metrika({
+                        id: 43134019,
+                        clickmap: true,
+                        trackLinks: true,
+                        accurateTrackBounce: true
+                    });
+                } catch (e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/43134019" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <environment names="Development">
+        <script src="~/js/shoppingCart.js"></script>
+        <script src="~/js/contact.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/js/shoppingCart.min.js"></script>
+        <script src="~/js/contact.min.js"></script>
+    </environment>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CledAcademy.Core.Domain.Faq>
+@{
+    ViewData["Title"] = "FAQ";
+    var index = 11;
+}
+  <!-- Start main-content -->
+<div class="main-content">
+
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg3.jpg">
+        <div class="container pt-70 pb-20">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title text-white">Ən Çox Soruşulan Suallar</h2>
+                        <ol class="breadcrumb text-left text-black mt-10">
+                            <li><a href="http://www.cledacademy.com">CledAcademy.Com</a></li>
+                            <li><a asp-controller="Home" asp-action="Index">Ana Səhifə</a></li>
+                            <li class="active text-gray-silver">FAQ</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div id="accordion1" class="panel-group accordion">
+                        @foreach (var faq in Model)
+                        {
+                            var id = "accordion" + index;
+                            <div class="panel">
+                                <div class="panel-title">
+                                    <a class="collapsed" data-parent="#accordion1" data-toggle="collapse" href="#@id" aria-expanded="false">
+                                        <span class="open-sub"></span> <strong>@(index - 10). @Html.Raw(faq.Question)</strong>
+                                    </a>
+                                </div>
+                                <div id="@id" class="panel-collapse collapse" role="tablist" aria-expanded="false">
+                                    <div class="panel-content">
+                                        <p>
+                                            @Html.Raw(faq.Answer)
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            index++;
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- divider: what makes us different -->
+    <section class="divider parallax layer-overlay overlay-white-9" data-parallax-ratio="0.1" data-bg-img="/images/bg2.jpg">
+        <div class="container">
+            <div class="section-content text-center">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="mt-0">Sualınıza cavab tapa bilmədiniz ?</h3>
+                        <h2>Elə isə <a class="btn-link" asp-controller="Home" asp-action="Contact">bizə</a> bu haqda yazın. Biz ən qısa zamanda sizə geri dönəcəyik. @*və ya <span class="text-theme-color-2">+994 51 874 05 18</span> nömrəsinə zəng edin*@</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- end main-content -->
